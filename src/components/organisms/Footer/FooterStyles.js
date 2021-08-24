@@ -9,6 +9,7 @@ export const Container = styled.footer`
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+    
 `;
 
 export const Column = styled.div`

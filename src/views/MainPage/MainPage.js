@@ -24,18 +24,21 @@ const Slide3 = styled(Slide1)`
     background-image: url(${banner3});
 `;
 
+const MainPageWrapper = styled.div`
+    flex: 1 0 auto;
+`;
+
 const MainPage = () => {
 
     return (
-        <>
-        <GeneralSlider>
-            <Slide1/>
-            <Slide2/>
-            <Slide3/>
-        </GeneralSlider>
-        <img src={beer4} alt="beer"/>
-        </>
-
+        <MainPageWrapper>
+            <GeneralSlider>
+                <Slide1/>
+                <Slide2/>
+                <Slide3/>
+            </GeneralSlider>
+            <img src={beer4} alt="beer"/>
+        </MainPageWrapper>
     )
 }
 

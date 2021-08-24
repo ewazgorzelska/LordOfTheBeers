@@ -26,10 +26,9 @@ table {
   border-collapse: collapse;
 }
 
-body {
-  min-height:100%; 
-  position:relative; 
-  padding-bottom: 170px;
+html, body {
+  position: relative;
+  min-height: 100vh;
 }
 
 `;

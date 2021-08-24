@@ -24,8 +24,6 @@ const NavBar = () => {
                     <ButtonIcon as={NavLink} to="/user"><TiUserOutline /></ButtonIcon>
                     <ButtonIcon as={NavLink} to="/cart"><TiShoppingCart /></ButtonIcon>
                 </IconContext.Provider>
-                    
-        
             </NavList>          
         </NavWrapper>
     )
