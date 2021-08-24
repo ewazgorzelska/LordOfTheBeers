@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import ButtonIcon from 'components/ButtonIcon/ButtonIcon';
+import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import logo from 'assets/logo.png';
-import { BsHeart, BsPerson } from "react-icons/bs";
-import { TiShoppingCart } from "react-icons/ti";
+import { IconContext } from "react-icons";
+import { TiHeartOutline, TiUserOutline, TiShoppingCart } from "react-icons/ti";
 
 
 const NavWrapper = styled.nav`
@@ -18,13 +18,12 @@ const NavWrapper = styled.nav`
 const NavList = styled.ul`
     display: flex;
     justify-content: flex-end;
-    
 `;
 
 const ListItem = styled(NavLink)`
     font-size: 20px;
     font-family: 'Shrikhand', cursive;
-    padding-right: 10px;
+    margin-right: 25px;
     cursor: pointer;
 `;
 
@@ -47,10 +46,13 @@ const NavBar = () => {
                 <ListItem as={NavLink} to="/shop">Shop</ListItem>
                 <ListItem as={NavLink} to="/blog">Blog</ListItem>
                 <ListItem as={NavLink} to="/about">About Us</ListItem>
-                
-                <ButtonIcon as={NavLink} to="/fav" icon={BsHeart}></ButtonIcon>
-                <ButtonIcon as={NavLink} to="/user" icon={BsPerson}></ButtonIcon>
-                <ButtonIcon as={NavLink} to="/cart" icon={TiShoppingCart}></ButtonIcon>
+                <IconContext.Provider value={{ size: 32 }}>
+                    <ButtonIcon as={NavLink} to="/fav"><TiHeartOutline /></ButtonIcon>
+                    <ButtonIcon as={NavLink} to="/user"><TiUserOutline /></ButtonIcon>
+                    <ButtonIcon as={NavLink} to="/cart"><TiShoppingCart /></ButtonIcon>
+                </IconContext.Provider>
+                    
+        
             </NavList>          
         </NavWrapper>
     )

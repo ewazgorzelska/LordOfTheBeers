@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GlobalStyle from 'styles/GlobalStyle';
-import NavBar from 'components/NavBar/NavBar';
+import NavBar from 'components/organisms/NavBar/NavBar';
 
 const MainTemplate = ({ children }) => (
   <div>
