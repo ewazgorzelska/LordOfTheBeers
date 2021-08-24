@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import GeneralSlider from "components/molecules/Slider/Slider";
-
 import banner1 from 'assets/banner1.jpg';
 import banner2 from 'assets/banner2.jpg';
 import banner3 from 'assets/banner3.jpg';
+import beer4 from 'assets/beer4.jpg';
 
 
 const Slide1 = styled.img`
@@ -27,11 +27,15 @@ const Slide3 = styled(Slide1)`
 const MainPage = () => {
 
     return (
+        <>
         <GeneralSlider>
             <Slide1/>
             <Slide2/>
             <Slide3/>
         </GeneralSlider>
+        <img src={beer4} alt="beer"/>
+        </>
+
     )
 }
 

@@ -25,6 +25,15 @@ img {
 table {
   border-collapse: collapse;
 }
+
+body {
+  min-height:100%; 
+  position:relative; 
+  padding-bottom: 170px;
+}
+
 `;
+
+
 
 export default GlobalStyle;
