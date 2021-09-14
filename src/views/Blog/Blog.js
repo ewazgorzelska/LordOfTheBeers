@@ -1,13 +1,23 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
+import MainTemplate from "templates/MainTemplate/MainTemplate";
+import Article from "./Article/Article";
 
+const ArticlesList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
 const Blog = () => {
-    return (
-        <div>
-            <h1>Article's Title</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit at mauris imperdiet ultricies. Praesent eu justo ut libero ornare cursus. Morbi viverra, sem eu semper finibus, turpis purus facilisis purus, in pulvinar nunc est ut leo. Duis tempor sodales eleifend. Nunc eu massa sodales, fringilla massa sed, laoreet mi. Sed cursus, dolor in volutpat pellentesque, lorem felis consectetur augue, luctus blandit augue sapien vel neque. Quisque ullamcorper accumsan arcu, nec sollicitudin massa sodales ut. Phasellus eget nibh nibh.</p>
-        </div>
-        
-    )
-}
+  return (
+    <MainTemplate>
+      <ArticlesList>
+        <Article />
+        <Article />
+        <Article />
+        <Article />
+      </ArticlesList>
+    </MainTemplate>
+  );
+};
 
 export default Blog;

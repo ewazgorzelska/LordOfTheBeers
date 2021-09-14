@@ -1,19 +1,22 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import MainTemplate from 'templates/MainTemplate/MainTemplate';
-import Blog from 'views/Blog/Blog';
-import MainPage from 'views/MainPage/MainPage';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Blog from "views/Blog/Blog";
+import MainPage from "views/MainPage/MainPage";
+import { GraphQLClient, ClientContext } from "graphql-hooks";
+
+const client = new GraphQLClient({
+  url: "/graphql",
+});
 
 function App() {
   return (
-    <div>
+    <ClientContext.Provider value={client}>
       <BrowserRouter>
-        <MainTemplate />
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/blog" component={Blog} />
         </Switch>
       </BrowserRouter>
-    </div>
+    </ClientContext.Provider>
   );
 }
 
