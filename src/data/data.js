@@ -1,3 +1,6 @@
+import { FiPackage } from "react-icons/fi";
+import { FaCrown, FaPlane } from "react-icons/fa";
+
 export const data = [
   {
     id: 1,
@@ -125,17 +128,26 @@ export const data = [
   },
 ];
 
-export const dummyBlog = {
-  id: 1,
-  title: "Article's Title",
-  content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit at mauris imperdiet ultricies. 
-    Praesent eu justo ut libero ornare cursus. Morbi viverra, sem eu semper finibus, turpis purus facilisis purus, in pulvinar nunc est ut leo. Duis tempor sodales eleifend. Nunc eu massa sodales, fringilla massa sed, laoreet mi. 
-    Sed cursus, dolor in volutpat pellentesque, lorem felis consectetur augue, luctus blandit augue sapien vel neque. Quisque ullamcorper accumsan arcu, nec sollicitudin massa sodales ut. Phasellus eget nibh nibh.Which also. Heaven great. Divided fifth brought they're deep. Abundantly fourth dominion won't. Upon yielding light doesn't gathering grass said beginning you're fowl midst. Great greater.
-
-    In cattle rule. I all thing tree morning fish years. Cattle likeness doesn't fish creepeth creeping you midst greater grass. Stars yielding won't above firmament moved you'll. Yielding hath second years great very fly is a for. Signs fill give every may. Creeping. Creeping fill night signs It, under. Were Him you're without signs great first form, third tree whose.
-    
-    Made together give place winged. Saw seas creeping fish it creepeth brought. Set they're winged midst fowl Cattle darkness air darkness is under was sea deep living, together creepeth in and and divided dry Firmament image after rule. Had for moveth divide give fly. Whose made, life.
-    
-    Tree moving life. Whales good firmament blessed called under you're their darkness multiply herb fruit. Fowl life open him evening they're moveth saw. One without dry deep sea fruit replenish rule. Had fruitful day one they're fowl firmament together him third fruitful the blessed divide have. Lesser a you fruitful good. Female. May was him our winged in land. Male herb our green rule a moved made.`,
-  image: "https://placebear.com/350/200",
-};
+export const infoSectionData = [
+  {
+    id: 1,
+    title: "The Best Selection",
+    icon: <FaCrown />,
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dapibus id lorem id sodales. Nullam scelerisque tellus velit, a tempor eros pharetra vel. Ut tristique velit ligula, at congue magna scelerisque a. ",
+  },
+  {
+    id: 2,
+    title: "Worldwide Delivery",
+    icon: <FaPlane />,
+    content:
+      "Quisque vel euismod enim. Quisque dapibus, felis id aliquam tristique, justo risus maximus magna, vitae rutrum velit neque non ex. Nulla commodo tellus a tempor feugiat. Nam vitae nisl non elit condimentum bibendum.",
+  },
+  {
+    id: 3,
+    title: "Safe & Discrete Delivery",
+    icon: <FiPackage />,
+    content:
+      "Vestibulum ac lectus et dolor congue congue. Mauris augue neque, varius in nisi a, imperdiet pellentesque est. Aliquam non metus ut ex interdum tincidunt in quis arcu. Cras vel enim nulla.",
+  },
+];
