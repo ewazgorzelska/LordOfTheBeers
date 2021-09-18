@@ -22,7 +22,7 @@ export const ImageWrapper = styled.div`
 
 export const ProductWrapper = styled.div`
   border-radius: 10px;
-  width: 60%;
+  width: ${({ isBig }) => (isBig ? "60%" : "14vw")};
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,8 @@ export const ProductWrapper = styled.div`
   &:hover {
     border: 3px solid lightgreen;
   }
+`;
+
+export const ProductName = styled.div`
+  padding-top: 10px;
 `;

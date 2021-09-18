@@ -4,6 +4,7 @@ import {
   ProductCardContainer,
   ImageWrapper,
   ProductWrapper,
+  ProductName,
 } from "./ProductCardStyles";
 import { data } from "data/data";
 
@@ -13,7 +14,7 @@ const ProductCard = () => {
   return (
     <ProductCardContainer id={data[0].id}>
       <ProductWrapper>
-        <div>{productName}</div>
+        <ProductName>{productName}</ProductName>
         <ImageWrapper />
         <div>$ 1.00</div>
         <Button isBig>Add to cart</Button>

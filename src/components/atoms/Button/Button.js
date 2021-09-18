@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   width: ${({ isBig }) => (isBig ? "65%" : "30%")};
-  height: ${({ isBig }) => (isBig ? "6vh" : "10vh")};
+  height: ${({ isBig }) => (isBig ? "4vh" : "10vh")};
   text-transform: uppercase;
   cursor: pointer;
   font-size: 0.75em;

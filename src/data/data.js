@@ -1,6 +1,15 @@
 import { FiPackage } from "react-icons/fi";
 import { FaCrown, FaPlane } from "react-icons/fa";
 
+export const categories = [
+  "all",
+  "blond",
+  "brown",
+  "dark",
+  "strong",
+  "non-alcoholic",
+];
+
 export const data = [
   {
     id: 1,
