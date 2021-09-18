@@ -1,60 +1,77 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "components/atoms/Button/Button";
+import React, { useContext, useEffect } from "react";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductCard from "components/molecules/ProductCard/ProductCard";
 import { categories } from "data/data";
+import {
+  CategoryContainer,
+  CategoryLinksWrapper,
+  StyledButton,
+  CategoryProducts,
+} from "./CategoryPageStyles";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { RestLink } from "apollo-link-rest";
+import { gql } from "@apollo/client";
+import { AppContext } from "context/AppContext";
+import { Link } from "react-router-dom";
 
-const CategoryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  width: 100%;
-`;
+const CategoryPage = ({ id, name, image_url }) => {
+  const { products, setProducts, setCategoryClicked } = useContext(AppContext);
 
-const CategoryLinksWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 2.5em;
-  margin-top: 3vh;
-`;
+  useEffect(() => {
+    const restLink = new RestLink({ uri: "https://api.punkapi.com/v2/" });
 
-const StyledButton = styled(Button)`
-  width: 11vw;
-  font-size: 1em;
-`;
+    const query = gql`
+      query AllBeers {
+        allBeers @rest(type: "Beer", path: "beers/") {
+          id
+          name
+          tagline
+          description
+          image_url
+          abv
+          ebc
+          foodpairing
+        }
+      }
+    `;
 
-const CategoryProducts = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 5vw;
-  margin: 3vh;
-`;
+    const client = new ApolloClient({
+      cache: new InMemoryCache(),
+      link: restLink,
+    });
 
-const CategoryPage = () => {
+    client.query({ query }).then((response) => {
+      setProducts(response.data.allBeers);
+    });
+  }, [setProducts]);
+
+  const handleCat = (id) => {
+    setCategoryClicked(id);
+  };
+
   return (
     <MainTemplate>
       <CategoryContainer>
         <CategoryLinksWrapper>
           {categories.map((cat) => (
-            <StyledButton key={cat} isBig>
-              {cat}
-            </StyledButton>
+            <Link to={`shop/category/${id}`}>
+              <StyledButton key={cat.id} id={cat.id} onClick={handleCat} isBig>
+                {cat.name}
+              </StyledButton>
+            </Link>
           ))}
         </CategoryLinksWrapper>
         <CategoryProducts>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
-          <ProductCard isBig/>
+          {products.length > 0 &&
+            products.map((beer) => (
+              <ProductCard
+                isBig
+                key={beer.id}
+                id={beer.id}
+                name={beer.name}
+                image_url={beer.image_url}
+              />
+            ))}
         </CategoryProducts>
       </CategoryContainer>
     </MainTemplate>

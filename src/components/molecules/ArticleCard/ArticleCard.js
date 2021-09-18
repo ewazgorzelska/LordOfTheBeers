@@ -9,10 +9,10 @@ import {
 } from "./ArticleCardStyles";
 
 const ArticleCard = ({ id, title, image = null, content }) => {
-  const { setClicked } = useContext(AppContext);
+  const { setArticleClicked } = useContext(AppContext);
 
   const handleClicked = (id) => {
-    setClicked(id);
+    setArticleClicked(id);
   };
 
   return (

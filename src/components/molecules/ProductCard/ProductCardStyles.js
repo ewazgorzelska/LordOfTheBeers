@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { data } from "data/data";
-
-const imageURL = data[0].image_url;
 
 export const ProductCardContainer = styled.div`
   display: flex;
@@ -13,11 +10,11 @@ export const ProductCardContainer = styled.div`
 export const ImageWrapper = styled.div`
   width: 100px;
   height: 200px;
-  background-image: url(${imageURL});
+  background-image: url(${({ image_url }) => image_url});
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  background-size: cover;
-  margin-top: 10px;
+  background-size: contain;
+  margin: 10px 0 10px 0;
 `;
 
 export const ProductWrapper = styled.div`
@@ -38,5 +35,8 @@ export const ProductWrapper = styled.div`
 `;
 
 export const ProductName = styled.div`
-  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 `;

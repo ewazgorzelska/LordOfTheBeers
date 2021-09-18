@@ -6,16 +6,13 @@ import {
   ProductWrapper,
   ProductName,
 } from "./ProductCardStyles";
-import { data } from "data/data";
 
-const productName = data[0].name;
-
-const ProductCard = () => {
+const ProductCard = ({ id, name, image_url }) => {
   return (
-    <ProductCardContainer id={data[0].id}>
+    <ProductCardContainer id={id}>
       <ProductWrapper>
-        <ProductName>{productName}</ProductName>
-        <ImageWrapper />
+        <ProductName>{name}</ProductName>
+        <ImageWrapper image_url={image_url} />
         <div>$ 1.00</div>
         <Button isBig>Add to cart</Button>
       </ProductWrapper>
