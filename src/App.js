@@ -12,7 +12,6 @@ function App() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:id" component={Article} />
         <Route path="/shop" component={CategoryPage} />
-        <Route path="/shop/category/:id" component={CategoryPage} />
       </Switch>
     </BrowserRouter>
   );

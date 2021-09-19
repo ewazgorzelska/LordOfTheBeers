@@ -5,7 +5,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
   const [articlesClicked, setArticlesClicked] = useState([]);
-  const [categoryClicked, setCategoryClicked] = useState([]);
+  const [categoryClicked, setCategoryClicked] = useState("");
   const [products, setProducts] = useState([]);
 
   return (

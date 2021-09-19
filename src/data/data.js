@@ -1,15 +1,6 @@
 import { FiPackage } from "react-icons/fi";
 import { FaCrown, FaPlane } from "react-icons/fa";
 
-export const categories = [
-  { id: 1, name: "all" },
-  { id: 1, name: "blonde" },
-  { id: 1, name: "brown" },
-  { id: 1, name: "dark" },
-  { id: 1, name: "strong" },
-  { id: 1, name: "non-alcoholic" },
-];
-
 export const infoSectionData = [
   {
     id: 1,

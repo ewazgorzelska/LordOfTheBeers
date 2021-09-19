@@ -11,11 +11,14 @@ import {
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 
 const Article = () => {
-  const { articles, clicked } = useContext(AppContext);
+  const { articles, articlesClicked } = useContext(AppContext);
 
-  const articleTitle = articles.find((el) => el.id === clicked).title;
-  const articleImage = articles.find((el) => el.id === clicked).image.url;
-  const articleContent = articles.find((el) => el.id === clicked).content;
+  const articleTitle = articles.find((el) => el.id === articlesClicked).title;
+  const articleImage = articles.find((el) => el.id === articlesClicked).image
+    .url;
+  const articleContent = articles.find(
+    (el) => el.id === articlesClicked
+  ).content;
 
   return (
     <MainTemplate>

@@ -1,28 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductCard from "components/molecules/ProductCard/ProductCard";
-import { categories } from "data/data";
 import {
   CategoryContainer,
   CategoryLinksWrapper,
   StyledButton,
   CategoryProducts,
+  Title,
 } from "./CategoryPageStyles";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
-import { gql } from "@apollo/client";
 import { AppContext } from "context/AppContext";
-import { Link } from "react-router-dom";
+import { Loading, Error } from "pages/Blog/BlogStyles";
+import noPhoto from "assets/no-photo.jpg";
 
-const CategoryPage = ({ id, name, image_url }) => {
-  const { products, setProducts, setCategoryClicked } = useContext(AppContext);
+const CategoryPage = () => {
+  const { products, setProducts, categoryClicked, setCategoryClicked } =
+    useContext(AppContext);
+  const [productsError, setProductsError] = useState("");
+
+  const blondes = products.filter((el) => el.ebc <= 16);
+  const browns = products.filter((el) => el.ebc >= 16 && el.ebc < 39);
+  const darks = products.filter((el) => el.ebc > 39);
+  const strongs = products.filter((el) => el.abv > 7);
+  const nonAlcoholic = products.filter((el) => el.abv < 3);
+
+  const categories = [
+    { id: "1", name: "all", beers: products },
+    { id: "2", name: "blondes", beers: blondes },
+    { id: "3", name: "browns", beers: browns },
+    { id: "4", name: "darks", beers: darks },
+    { id: "5", name: "strongs", beers: strongs },
+    { id: "6", name: "non-alcoholic", beers: nonAlcoholic },
+  ];
 
   useEffect(() => {
     const restLink = new RestLink({ uri: "https://api.punkapi.com/v2/" });
 
     const query = gql`
       query AllBeers {
-        allBeers @rest(type: "Beer", path: "beers/") {
+        allBeers @rest(type: "Beer", path: "beers?page=3&per_page=80") {
           id
           name
           tagline
@@ -40,39 +57,56 @@ const CategoryPage = ({ id, name, image_url }) => {
       link: restLink,
     });
 
-    client.query({ query }).then((response) => {
-      setProducts(response.data.allBeers);
-    });
-  }, [setProducts]);
+    client
+      .query({ query })
+      .then((response) => {
+        setProducts(response.data.allBeers);
+      })
+      .catch(() => {
+        setProductsError(`Sorry, we couldn't load products for you`);
+      });
+  }, [setProducts, setProductsError]);
 
   const handleCat = (id) => {
     setCategoryClicked(id);
   };
 
+  const chosenCat = categoryClicked
+    ? categories.find((el) => el.id === categoryClicked).beers
+    : products;
+
   return (
     <MainTemplate>
       <CategoryContainer>
         <CategoryLinksWrapper>
-          {categories.map((cat) => (
-            <Link to={`shop/category/${id}`}>
-              <StyledButton key={cat.id} id={cat.id} onClick={handleCat} isBig>
-                {cat.name}
-              </StyledButton>
-            </Link>
+          {categories.map(({ id, name }) => (
+            <StyledButton key={id} id={id} onClick={() => handleCat(id)} isBig>
+              {name}
+            </StyledButton>
           ))}
         </CategoryLinksWrapper>
-        <CategoryProducts>
-          {products.length > 0 &&
-            products.map((beer) => (
+        <Title>
+          {categoryClicked
+            ? categories.find((el) => el.id === categoryClicked).name
+            : categories[0].name}
+        </Title>
+        {products.length > 0 ? (
+          <CategoryProducts>
+            {chosenCat.map(({ id, name, image_url }) => (
               <ProductCard
                 isBig
-                key={beer.id}
-                id={beer.id}
-                name={beer.name}
-                image_url={beer.image_url}
+                key={id}
+                id={id}
+                name={name}
+                image_url={image_url ? image_url : noPhoto}
               />
             ))}
-        </CategoryProducts>
+          </CategoryProducts>
+        ) : productsError ? (
+          <Error>error</Error>
+        ) : (
+          <Loading>Loading ...</Loading>
+        )}
       </CategoryContainer>
     </MainTemplate>
   );

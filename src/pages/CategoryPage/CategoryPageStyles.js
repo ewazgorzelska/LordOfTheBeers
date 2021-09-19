@@ -19,7 +19,7 @@ export const CategoryLinksWrapper = styled.div`
 
 export const StyledButton = styled(Button)`
   width: 11vw;
-  font-size: 1em;
+  font-size: 0.75em;
 `;
 
 export const CategoryProducts = styled.div`
@@ -27,4 +27,11 @@ export const CategoryProducts = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 5vw;
   margin: 3vh;
+`;
+
+export const Title = styled.div`
+  font-size: 3em;
+  font-weight: 800;
+  text-transform: capitalize;
+  margin-top: 7vh;
 `;
