@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import Button from "components/atoms/Button/Button";
 
 export const ProductCardContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin: 15px 0 15px 0;
+  height: 60vh;
 `;
 
 export const ImageWrapper = styled.div`
@@ -23,7 +25,7 @@ export const ProductWrapper = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border: 3px solid transparent;
   -webkit-box-shadow: 4px 1px 15px 5px rgba(0, 0, 0, 0.5);
@@ -40,3 +42,9 @@ export const ProductName = styled.div`
   align-items: center;
   padding: 10px;
 `;
+
+export const StyledButton = styled(Button)`
+  background-color: #ffa500;
+`;
+
+export const ButtonWrapper = styled.div``;

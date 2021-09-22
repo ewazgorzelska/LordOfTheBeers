@@ -10,7 +10,7 @@ const NavBar = () => {
     <NavWrapper>
       <Logo as={NavLink} exact to="/" />
       <NavList>
-        <ListItem as={NavLink} to="/shop">
+        <ListItem as={NavLink} to="/category/1">
           Shop
         </ListItem>
         <ListItem as={NavLink} to="/blog">

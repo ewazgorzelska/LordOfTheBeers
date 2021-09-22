@@ -31,7 +31,7 @@ export const CategoryProducts = styled.div`
 
 export const Title = styled.div`
   font-size: 3em;
-  font-weight: 800;
   text-transform: capitalize;
-  margin-top: 7vh;
+  margin-top: 5vh;
+  font-family: "Shrikhand", cursive;
 `;

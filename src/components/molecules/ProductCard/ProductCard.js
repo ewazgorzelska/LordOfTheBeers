@@ -5,18 +5,26 @@ import {
   ImageWrapper,
   ProductWrapper,
   ProductName,
+  StyledButton,
+  ButtonWrapper,
 } from "./ProductCardStyles";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ id, name, image_url }) => {
   return (
-    <ProductCardContainer id={id}>
-      <ProductWrapper>
-        <ProductName>{name}</ProductName>
-        <ImageWrapper image_url={image_url} />
-        <div>$ 1.00</div>
-        <Button isBig>Add to cart</Button>
-      </ProductWrapper>
-    </ProductCardContainer>
+    <Link to={`/product/${id}`}>
+      <ProductCardContainer>
+        <ProductWrapper>
+          <ProductName>{name}</ProductName>
+          <ImageWrapper image_url={image_url} />
+          <div>$ 1.00</div>
+          <ButtonWrapper>
+            <StyledButton isBig>Add to cart</StyledButton>
+            <Button isBig>Preview</Button>
+          </ButtonWrapper>
+        </ProductWrapper>
+      </ProductCardContainer>
+    </Link>
   );
 };
 

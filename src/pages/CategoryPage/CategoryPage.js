@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductCard from "components/molecules/ProductCard/ProductCard";
 import {
@@ -15,9 +16,9 @@ import { Loading, Error } from "pages/Blog/BlogStyles";
 import noPhoto from "assets/no-photo.jpg";
 
 const CategoryPage = () => {
-  const { products, setProducts, categoryClicked, setCategoryClicked } =
-    useContext(AppContext);
+  const { products, setProducts } = useContext(AppContext);
   const [productsError, setProductsError] = useState("");
+  let { id } = useParams();
 
   const blondes = products.filter((el) => el.ebc <= 16);
   const browns = products.filter((el) => el.ebc >= 16 && el.ebc < 39);
@@ -47,7 +48,7 @@ const CategoryPage = () => {
           image_url
           abv
           ebc
-          foodpairing
+          food_pairing
         }
       }
     `;
@@ -67,28 +68,22 @@ const CategoryPage = () => {
       });
   }, [setProducts, setProductsError]);
 
-  const handleCat = (id) => {
-    setCategoryClicked(id);
-  };
-
-  const chosenCat = categoryClicked
-    ? categories.find((el) => el.id === categoryClicked).beers
-    : products;
+  const chosenCat = id ? categories.find((el) => el.id === id).beers : products;
 
   return (
     <MainTemplate>
       <CategoryContainer>
         <CategoryLinksWrapper>
           {categories.map(({ id, name }) => (
-            <StyledButton key={id} id={id} onClick={() => handleCat(id)} isBig>
-              {name}
-            </StyledButton>
+            <Link key={id} to={`/category/${id}`}>
+              <StyledButton id={id} isBig>
+                {name}
+              </StyledButton>
+            </Link>
           ))}
         </CategoryLinksWrapper>
         <Title>
-          {categoryClicked
-            ? categories.find((el) => el.id === categoryClicked).name
-            : categories[0].name}
+          {id ? categories.find((el) => el.id === id).name : categories[0].name}
         </Title>
         {products.length > 0 ? (
           <CategoryProducts>

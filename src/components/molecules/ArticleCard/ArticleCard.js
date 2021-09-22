@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { AppContext } from "context/AppContext";
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   ArticleWrapper,
   Title,
@@ -9,23 +9,17 @@ import {
 } from "./ArticleCardStyles";
 
 const ArticleCard = ({ id, title, image = null, content }) => {
-  const { setArticleClicked } = useContext(AppContext);
-
-  const handleClicked = (id) => {
-    setArticleClicked(id);
-  };
-
   return (
-    <ArticleWrapper>
-      <Title>{title}</Title>
-      {image ? <Image src={image} alt="beer" /> : null}
-      <Content>{content}</Content>
-      <Button to={`blog/${id}`}>
-        <button id={id} onClick={() => handleClicked(id)}>
+    <Link to={`article/${id}`}>
+      <ArticleWrapper>
+        <Title>{title}</Title>
+        {image ? <Image src={image} alt="beer" /> : null}
+        <Content>{content}</Content>
+        <Button as={Link} to={`article/${id}`}>
           Read more
-        </button>
-      </Button>
-    </ArticleWrapper>
+        </Button>
+      </ArticleWrapper>
+    </Link>
   );
 };
 

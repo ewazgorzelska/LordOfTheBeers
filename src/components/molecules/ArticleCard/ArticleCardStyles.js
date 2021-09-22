@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 export const ArticleWrapper = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ export const Content = styled.p`
   height: 500px;
 `;
 
-export const Button = styled(Link)`
+export const Button = styled.button`
   width: 30%;
   height: 10vh;
   text-transform: uppercase;
