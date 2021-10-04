@@ -1,11 +1,11 @@
 import styled from "styled-components";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ArticleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  max-height: 600px;
+  width: 40%;
+  height: 60%;
   border: 1px solid lightgrey;
   border-radius: 10px;
   padding: 15px;
@@ -27,12 +27,12 @@ export const Image = styled.img`
 
 export const Content = styled.p`
   overflow: hidden;
-  height: 500px;
+  height: 50vh;
 `;
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   width: 30%;
-  height: 10vh;
+  height: 8vh;
   text-transform: uppercase;
   cursor: pointer;
   font-size: 0.75em;

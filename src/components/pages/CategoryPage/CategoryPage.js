@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductCard from "components/molecules/ProductCard/ProductCard";
@@ -9,15 +9,13 @@ import {
   CategoryProducts,
   Title,
 } from "./CategoryPageStyles";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { RestLink } from "apollo-link-rest";
-import { AppContext } from "context/AppContext";
-import { Loading, Error } from "pages/Blog/BlogStyles";
+import { Loading, Error } from "components/pages/Blog/BlogStyles";
 import noPhoto from "assets/no-photo.jpg";
+import { AppContext } from "context/AppContext";
 
-const CategoryPage = () => {
-  const { products, setProducts } = useContext(AppContext);
-  const [productsError, setProductsError] = useState("");
+const CategoryPage = ({ productsError }) => {
+  
+  const { products } = useContext(AppContext);
   let { id } = useParams();
 
   const blondes = products.filter((el) => el.ebc <= 16);
@@ -34,39 +32,6 @@ const CategoryPage = () => {
     { id: "5", name: "strongs", beers: strongs },
     { id: "6", name: "non-alcoholic", beers: nonAlcoholic },
   ];
-
-  useEffect(() => {
-    const restLink = new RestLink({ uri: "https://api.punkapi.com/v2/" });
-
-    const query = gql`
-      query AllBeers {
-        allBeers @rest(type: "Beer", path: "beers?page=3&per_page=80") {
-          id
-          name
-          tagline
-          description
-          image_url
-          abv
-          ebc
-          food_pairing
-        }
-      }
-    `;
-
-    const client = new ApolloClient({
-      cache: new InMemoryCache(),
-      link: restLink,
-    });
-
-    client
-      .query({ query })
-      .then((response) => {
-        setProducts(response.data.allBeers);
-      })
-      .catch(() => {
-        setProductsError(`Sorry, we couldn't load products for you`);
-      });
-  }, [setProducts, setProductsError]);
 
   const chosenCat = id ? categories.find((el) => el.id === id).beers : products;
 

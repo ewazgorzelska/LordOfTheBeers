@@ -24,3 +24,4 @@ export const infoSectionData = [
       "Vestibulum ac lectus et dolor congue congue. Mauris augue neque, varius in nisi a, imperdiet pellentesque est. Aliquam non metus ut ex interdum tincidunt in quis arcu. Cras vel enim nulla.",
   },
 ];
+

@@ -10,12 +10,13 @@ import {
 } from "./ProductCardStyles";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ id, name, image_url }) => {
+const ProductCard = ({ id, productsName, image_url }) => {
+
   return (
     <Link to={`/product/${id}`}>
       <ProductCardContainer>
         <ProductWrapper>
-          <ProductName>{name}</ProductName>
+          <ProductName>{productsName}</ProductName>
           <ImageWrapper image_url={image_url} />
           <div>$ 1.00</div>
           <ButtonWrapper>

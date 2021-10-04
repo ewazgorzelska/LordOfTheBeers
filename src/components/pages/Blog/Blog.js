@@ -2,12 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AppContext } from "context/AppContext";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
-import ArticleCard from "../../components/molecules/ArticleCard/ArticleCard";
+import ArticleCard from "components/molecules/ArticleCard/ArticleCard";
 import { ArticlesList, Loading, Error } from "./BlogStyles";
 
 const API_KEY = process.env.REACT_APP_DATOCMS_TOKEN;
 
-const BLOG_QUERY = `{
+export const BLOG_QUERY = `{
   allArticles {
     content
     id
@@ -58,7 +58,7 @@ const Blog = () => {
           ))}
         </ArticlesList>
       ) : error ? (
-        <Error>error</Error>
+        <Error>{error}</Error>
       ) : (
         <Loading>Loading ...</Loading>
       )}
