@@ -7,9 +7,7 @@ export const renderWithProviders = (children) => {
   return render(
     <AppContextProvider>
       <BrowserRouter>
-        <Switch>
-          {children}
-        </Switch>
+        <Switch>{children}</Switch>
       </BrowserRouter>
     </AppContextProvider>
   );

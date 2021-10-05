@@ -9,7 +9,6 @@ import { selectHttpOptionsAndBody } from "@apollo/client";
 const mock = new MockAdapter(axios);
 
 describe("Blog", () => {
- 
   afterEach(() => {
     mock.reset();
   });
@@ -20,25 +19,22 @@ describe("Blog", () => {
     await screen.findByText(/Sorry/);
   });
 
-    it("Displays the articles", async () => {
-    
-      mock.onPost("https://graphql.datocms.com/", { BLOG_QUERY }).reply(200, {
-            data: {
-              allArticles: [
-                  {
-                    content: "Test lorem ipsum",
-                    id: "57557535",
-                    title: "Test",
-                    image: { url: "https://placebear.com/g/200/300" },
-                  },
-                ],
+  it("Displays the articles", async () => {
+    mock.onPost("https://graphql.datocms.com/", { BLOG_QUERY }).reply(200, {
+      data: {
+        allArticles: [
+          {
+            content: "Test lorem ipsum",
+            id: "57557535",
+            title: "Test",
+            image: { url: "https://placebear.com/g/200/300" },
           },
-        });
-      renderWithProviders(<Blog />);
-      
-      const text = await screen.findAllByText(/Test/);
-      expect(text).toBeInTheDocument();
-      
+        ],
+      },
     });
-});
+    renderWithProviders(<Blog />);
 
+    const text = await screen.findAllByText(/Test/);
+    expect(text).toBeInTheDocument();
+  });
+});

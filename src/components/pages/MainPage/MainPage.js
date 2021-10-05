@@ -17,11 +17,11 @@ import MainTemplate from "templates/MainTemplate/MainTemplate";
 import { infoSectionData } from "data/data";
 import { AppContext } from "context/AppContext";
 
-const MainPage = () => {
+const MainPage = ({ productsError }) => {
   const { products } = useContext(AppContext);
 
   const bestsellers = products.filter((el, i) => i < 5);
-  
+
   return (
     <MainTemplate>
       <MainPageWrapper>
@@ -45,7 +45,16 @@ const MainPage = () => {
           <WidgetTitle>Bestsellers</WidgetTitle>
         </WidgetTitleWrapper>
         <ProductSlider>
-          { bestsellers.map(el => <ProductCard key={el.id} id={el.id} name={el.name} image_url={el.image_url}/>)}
+          {productsError
+            ? productsError
+            : bestsellers.map((el) => (
+                <ProductCard
+                  key={el.id}
+                  id={el.id}
+                  name={el.name}
+                  image_url={el.image_url}
+                />
+              ))}
         </ProductSlider>
       </MainPageWrapper>
     </MainTemplate>

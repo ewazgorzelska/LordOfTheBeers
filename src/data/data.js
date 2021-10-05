@@ -25,3 +25,19 @@ export const infoSectionData = [
   },
 ];
 
+export const initialCart = [
+  {
+    id: 666,
+    image: "https://placebear.com/300/200",
+    name: "Example Beer",
+    unitPrice: 1.0,
+    quantity: 1,
+  },
+  {
+    id: 667,
+    image: "https://placebear.com/300/200",
+    name: "Example Beer",
+    unitPrice: 2.0,
+    quantity: 3,
+  },
+];

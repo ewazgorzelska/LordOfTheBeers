@@ -39,7 +39,7 @@ const ProductPage = () => {
           <h2>{productTagline}</h2>
           <ProductPrice>$1.00</ProductPrice>
           <ButtonWrapper>
-            <ProductQuantity />
+            <ProductQuantity isBig />
             <StyledButton isBig>Add to cart</StyledButton>
           </ButtonWrapper>
         </ProductNameWrapper>

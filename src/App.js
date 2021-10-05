@@ -1,16 +1,12 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import React, { useEffect, useContext, useState} from 'react';
-import Blog from "components/pages/Blog/Blog";
+import React, { useEffect, useContext, useState } from "react";
 import MainPage from "components/pages/MainPage/MainPage";
-import Article from "components/organisms/Article/Article";
 import CategoryPage from "components/pages/CategoryPage/CategoryPage";
-import ProductPage from "components/pages/ProductPage/ProductPage";
 import { AppContext } from "context/AppContext";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
+import AppProviders from "AppProviders/AppProviders";
 
 function App() {
-
   const { setProducts } = useContext(AppContext);
   const [productsError, setProductsError] = useState("");
 
@@ -48,18 +44,10 @@ function App() {
   }, [setProducts, setProductsError]);
 
   return (
-   
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/article/:id" component={Article} />
-          <Route path="/category/:id" component={CategoryPage} />
-          <Route path="/product/:id" component={ProductPage} />
-          <CategoryPage productsError={productsError}/>
-        </Switch>
-      </BrowserRouter>
-    
+    <AppProviders>
+      <CategoryPage productsError={productsError} />
+      <MainPage productsError={productsError} />
+    </AppProviders>
   );
 }
 

@@ -14,7 +14,6 @@ import noPhoto from "assets/no-photo.jpg";
 import { AppContext } from "context/AppContext";
 
 const CategoryPage = ({ productsError }) => {
-  
   const { products } = useContext(AppContext);
   let { id } = useParams();
 

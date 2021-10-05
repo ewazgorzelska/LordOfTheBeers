@@ -11,7 +11,6 @@ import {
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ id, productsName, image_url }) => {
-
   return (
     <Link to={`/product/${id}`}>
       <ProductCardContainer>
