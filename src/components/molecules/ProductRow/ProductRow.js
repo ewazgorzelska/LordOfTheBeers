@@ -1,43 +1,31 @@
 import React from "react";
-import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import ProductQuantity from "../ProductQuantity/ProductQuantity";
 import { IoClose } from "react-icons/io5";
+import noPhoto from "assets/no-photo.jpg";
+import { removeFromCart } from "store/index.js";
+import {
+  ProductRowWrapper,
+  ProductImage,
+  ProductName,
+  Price,
+  RemoveButton,
+} from "./ProductRowStyles";
 
-const ProductRowWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  //border: 1px solid grey;
-  margin: 2em auto 2em auto;
-  gap: 4em;
-`;
+const ProductRow = ({ id, image, name, unitPrice, quantityInCart }) => {
+  const dispatch = useDispatch();
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart({ id: id }));
+  };
 
-const ProductImage = styled.div`
-  width: 9vw;
-  height: 10vh;
-  background-image: url(${({ image }) => image});
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: contain;
-`;
-const ProductName = styled.div``;
-const Price = styled.div``;
-const RemoveButton = styled.button`
-  width: 2vw;
-  height: 4vh;
-  border: 2px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ProductRow = ({ id, image, name, unitPrice }) => {
   return (
     <ProductRowWrapper id={id}>
-      <ProductImage image={image} />
+      <ProductImage image={image ? image : noPhoto} />
       <ProductName>{name}</ProductName>
-      <ProductQuantity />
+      <ProductQuantity quantityInCart={quantityInCart} id={id} />
+      <div>{quantityInCart}</div>
       <Price>{unitPrice}$</Price>
-      <RemoveButton>
+      <RemoveButton onClick={handleRemoveFromCart}>
         <IoClose />
       </RemoveButton>
     </ProductRowWrapper>
