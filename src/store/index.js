@@ -29,15 +29,7 @@ export const updateQuantityDecrementation = (payload) => {
 };
 
 const initialState = {
-  productsInCart: [
-    {
-      id: 666,
-      image: "https://placebear.com/300/300",
-      name: "Example Beer",
-      price: 1.0,
-      quantityInCart: 1,
-    },
-  ],
+  productsInCart: [],
 };
 
 const productsReducer = (state = initialState, action) => {

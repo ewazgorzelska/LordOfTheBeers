@@ -16,6 +16,7 @@ import ProductCard from "components/molecules/ProductCard/ProductCard";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import { infoSectionData } from "data/data";
 import { AppContext } from "context/AppContext";
+import CartPreview from "components/organisms/CartPreview/CartPreview";
 
 const MainPage = ({ productsError }) => {
   const { products } = useContext(AppContext);
@@ -23,41 +24,44 @@ const MainPage = ({ productsError }) => {
   const bestsellers = products.filter((el, i) => i < 5);
 
   return (
-    <MainTemplate>
-      <MainPageWrapper>
-        <BannerSlider>
-          <Slide1 />
-          <Slide2 />
-          <Slide3 />
-        </BannerSlider>
-        <InfoSection>
-          {infoSectionData.map((item) => (
-            <InfoSectionItem
-              key={item.id}
-              title={item.title}
-              icon={item.icon}
-              content={item.content}
-            />
-          ))}
-        </InfoSection>
-        <MiddleImage />
-        <WidgetTitleWrapper>
-          <WidgetTitle>Bestsellers</WidgetTitle>
-        </WidgetTitleWrapper>
-        <ProductSlider>
-          {productsError
-            ? productsError
-            : bestsellers.map((el) => (
-                <ProductCard
-                  key={el.id}
-                  id={el.id}
-                  name={el.name}
-                  image_url={el.image_url}
-                />
-              ))}
-        </ProductSlider>
-      </MainPageWrapper>
-    </MainTemplate>
+    <>
+      <CartPreview />
+      <MainTemplate>
+        <MainPageWrapper>
+          <BannerSlider>
+            <Slide1 />
+            <Slide2 />
+            <Slide3 />
+          </BannerSlider>
+          <InfoSection>
+            {infoSectionData.map((item) => (
+              <InfoSectionItem
+                key={item.id}
+                title={item.title}
+                icon={item.icon}
+                content={item.content}
+              />
+            ))}
+          </InfoSection>
+          <MiddleImage />
+          <WidgetTitleWrapper>
+            <WidgetTitle>Bestsellers</WidgetTitle>
+          </WidgetTitleWrapper>
+          <ProductSlider>
+            {productsError
+              ? productsError
+              : bestsellers.map((el) => (
+                  <ProductCard
+                    key={el.id}
+                    id={el.id}
+                    name={el.name}
+                    image_url={el.image_url}
+                  />
+                ))}
+          </ProductSlider>
+        </MainPageWrapper>
+      </MainTemplate>
+    </>
   );
 };
 

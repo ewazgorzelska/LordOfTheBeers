@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import useCartPreview from "hooks/useCartPreview";
 
 export const AppContext = createContext();
 
@@ -6,6 +7,7 @@ export const AppContextProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
   const [categoryClicked, setCategoryClicked] = useState("");
   const [products, setProducts] = useState([]);
+  const { isCartPreviewOpened, handleCartPreview } = useCartPreview();
 
   return (
     <AppContext.Provider
@@ -16,6 +18,8 @@ export const AppContextProvider = ({ children }) => {
         setProducts,
         categoryClicked,
         setCategoryClicked,
+        isCartPreviewOpened,
+        handleCartPreview,
       }}
     >
       {children}
