@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const ProductRowWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 0.5fr 1fr 1fr;
   align-items: center;
   margin: 2em auto 2em auto;
   gap: 4em;
+  width: 80vw;
 `;
 
 export const ProductImage = styled.div`

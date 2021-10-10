@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import ProductQuantity from "../ProductQuantity/ProductQuantity";
 import { IoClose } from "react-icons/io5";
 import noPhoto from "assets/no-photo.jpg";
@@ -20,10 +21,13 @@ const ProductRow = ({ id, image, name, unitPrice, quantityInCart }) => {
 
   return (
     <ProductRowWrapper id={id}>
-      <ProductImage image={image ? image : noPhoto} />
-      <ProductName>{name}</ProductName>
+      <Link to={`/product/${id}`}>
+        <ProductImage image={image ? image : noPhoto} />
+      </Link>
+      <Link to={`/product/${id}`}>
+        <ProductName>{name}</ProductName>
+      </Link>
       <ProductQuantity quantityInCart={quantityInCart} id={id} />
-      <div>{quantityInCart}</div>
       <Price>{unitPrice}$</Price>
       <RemoveButton onClick={handleRemoveFromCart}>
         <IoClose />

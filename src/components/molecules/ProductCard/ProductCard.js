@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Button from "components/atoms/Button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ProductCardContainer,
   ImageWrapper,
@@ -10,24 +10,32 @@ import {
   ButtonWrapper,
 } from "./ProductCardStyles";
 import { Link } from "react-router-dom";
-import { addToCart } from "store/index.js";
+import { addToCart, updateQuantityIncrementation } from "store/index.js";
 import { AppContext } from "context/AppContext";
 
 const ProductCard = ({ id, name, image_url }) => {
   const dispatch = useDispatch();
   const { handleCartPreview } = useContext(AppContext);
 
+  const productsInCart = useSelector((state) => state.productsInCart);
+
+  const isProductInCart = (id) => {
+    return productsInCart.filter((el) => el.id === id);
+  };
+
   const handleAddToCart = (e) => {
     e.preventDefault();
-    dispatch(
-      addToCart({
-        id,
-        image: image_url,
-        name,
-        price: 2.0,
-        quantityInCart: 1,
-      })
-    );
+    isProductInCart(id).length === 0
+      ? dispatch(
+          addToCart({
+            id,
+            image: image_url,
+            name,
+            price: 2.0,
+            quantityInCart: 1,
+          })
+        )
+      : dispatch(updateQuantityIncrementation({ id }));
     handleCartPreview();
   };
 
