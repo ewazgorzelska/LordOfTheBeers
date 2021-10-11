@@ -38,7 +38,6 @@ const CartPreview = () => {
         <ButtonContent>checkout</ButtonContent>
         <RightArrowIcon />
       </StyledCartPreviewButton>
-      <CartPreviewRowWrapper></CartPreviewRowWrapper>
     </PreviewCartContainer>
   );
 };

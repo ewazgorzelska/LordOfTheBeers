@@ -16,9 +16,10 @@ import {
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductQuantity from "components/molecules/ProductQuantity/ProductQuantity";
 import { addToCart, updateQuantityIncrementation } from "store/index.js";
+import CartPreview from "components/organisms/CartPreview/CartPreview";
 
 const ProductPage = () => {
-  const { products } = useContext(AppContext);
+  const { products, handleCartPreview, isCartPreviewOpened } = useContext(AppContext);
   let { id } = useParams();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
@@ -56,9 +57,12 @@ const ProductPage = () => {
           })
         )
       : dispatch(updateQuantityIncrementation({ id }));
+      if (!isCartPreviewOpened) handleCartPreview();
   };
 
   return (
+    <>
+      <CartPreview />
     <MainTemplate>
       <ProductContainer>
         {productImage ? <Image src={productImage} alt="beer" /> : null}
@@ -85,6 +89,7 @@ const ProductPage = () => {
         </ProductDescription>
       </ProductContainer>
     </MainTemplate>
+    </>
   );
 };
 

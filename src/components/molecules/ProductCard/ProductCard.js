@@ -15,7 +15,7 @@ import { AppContext } from "context/AppContext";
 
 const ProductCard = ({ id, name, image_url }) => {
   const dispatch = useDispatch();
-  const { handleCartPreview, isCartPreviewOpened, offset } = useContext(AppContext);
+  const { handleCartPreview, isCartPreviewOpened } = useContext(AppContext);
 
   const productsInCart = useSelector((state) => state.productsInCart);
 
