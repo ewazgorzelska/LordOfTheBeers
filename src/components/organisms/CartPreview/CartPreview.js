@@ -4,20 +4,25 @@ import { AppContext } from "context/AppContext";
 import CartPreviewRow from "components/molecules/CartPreviewRow/CartPreviewRow";
 import {
   PreviewCartContainer,
-  ArrowIcon,
+  LeftArrowIcon,
+  RightArrowIcon,
   ButtonContent,
+  CartPreviewButton,
+  CartPreviewRowWrapper,
+  StyledCartPreviewButton,
 } from "./CartPreviewStyles";
 
 const CartPreview = () => {
-  const { isCartPreviewOpened, handleCartPreview } = useContext(AppContext);
+  const { isCartPreviewOpened, handleCartPreview, offset } = useContext(AppContext);
   const productsInCart = useSelector((state) => state.productsInCart);
-
+  
   return (
-    <PreviewCartContainer isCartPreviewOpened={isCartPreviewOpened}>
-      <button onClick={handleCartPreview}>
-        <ArrowIcon />
+    <PreviewCartContainer isCartPreviewOpened={isCartPreviewOpened} offset={offset}>
+      <CartPreviewButton onClick={handleCartPreview}>
+        <LeftArrowIcon />
         <ButtonContent>continue shopping</ButtonContent>
-      </button>
+      </CartPreviewButton>
+      <CartPreviewRowWrapper>
       {productsInCart.map(({ id, image, name, price, quantityInCart }) => (
         <CartPreviewRow
           key={id}
@@ -28,6 +33,12 @@ const CartPreview = () => {
           quantityInCart={quantityInCart}
         />
       ))}
+      </CartPreviewRowWrapper>
+      <StyledCartPreviewButton to={`/cart`} onClick={handleCartPreview}>
+        <ButtonContent>checkout</ButtonContent>
+        <RightArrowIcon />
+      </StyledCartPreviewButton>
+      <CartPreviewRowWrapper></CartPreviewRowWrapper>
     </PreviewCartContainer>
   );
 };

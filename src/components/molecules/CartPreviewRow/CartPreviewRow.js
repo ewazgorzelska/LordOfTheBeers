@@ -2,26 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import noPhoto from "assets/no-photo.jpg";
 
+const width = 6;
+
 const CartPreviewRowWrapper = styled.div`
   display: flex;
   gap: 1em;
   margin-top: 3vh;
 `;
 export const ProductImage = styled.div`
-  width: 6vw;
+  width: ${width}vw;
   height: 10vh;
   background-image: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: contain;
 `;
-export const ProductName = styled.div``;
+export const ProductName = styled.div`
+  width: ${width*2}vw;
+`;
 
-export const Price = styled.div``;
+export const Price = styled.div`
+  width: ${width}vw;
+`;
 
-export const Separator = styled.div`
-  border-bottom: 1px solid black;
-  width: 80%;
+export const QuantityInCart = styled.div`
+  width: ${width}vw;
 `;
 
 const CartPreviewRow = ({ id, image, name, price, quantityInCart }) => {
@@ -29,8 +34,8 @@ const CartPreviewRow = ({ id, image, name, price, quantityInCart }) => {
     <CartPreviewRowWrapper id={id}>
       <ProductImage image={image ? image : noPhoto} />
       <ProductName>{name}</ProductName>
-      <div>{price} $</div>
-      <div>{quantityInCart}</div>
+      <Price>{price} $</Price>
+      <QuantityInCart>{quantityInCart} btl</QuantityInCart>
     </CartPreviewRowWrapper>
   );
 };

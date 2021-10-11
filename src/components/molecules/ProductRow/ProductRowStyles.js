@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const width = 6;
+
 export const ProductRowWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 0.5fr 1fr 1fr;

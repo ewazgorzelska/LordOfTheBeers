@@ -7,7 +7,7 @@ export const AppContextProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
   const [categoryClicked, setCategoryClicked] = useState("");
   const [products, setProducts] = useState([]);
-  const { isCartPreviewOpened, handleCartPreview } = useCartPreview();
+  const { isCartPreviewOpened, handleCartPreview, offset } = useCartPreview();
 
   return (
     <AppContext.Provider
@@ -20,6 +20,7 @@ export const AppContextProvider = ({ children }) => {
         setCategoryClicked,
         isCartPreviewOpened,
         handleCartPreview,
+        offset
       }}
     >
       {children}

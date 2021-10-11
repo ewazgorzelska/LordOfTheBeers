@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 
 const useCartPreview = () => {
-  const [isCartPreviewOpened, setCartPreviewOpened] = useState(false);
+  const [ isCartPreviewOpened, setCartPreviewOpened ] = useState(false);
+  const [ offset, setOffset ] = useState(0);
 
   const handleCartPreview = () => {
     setCartPreviewOpened((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(Math.round(window.pageYOffset));
+    }
+  }, [])
 
   useEffect(() => {
     if (isCartPreviewOpened) {
@@ -15,7 +22,7 @@ const useCartPreview = () => {
     }
   }, [isCartPreviewOpened]);
 
-  return { isCartPreviewOpened, handleCartPreview };
+  return { isCartPreviewOpened, handleCartPreview, offset };
 };
 
 export default useCartPreview;

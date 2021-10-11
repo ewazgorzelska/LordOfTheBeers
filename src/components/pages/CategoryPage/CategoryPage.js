@@ -12,11 +12,12 @@ import {
 import { Loading, Error } from "components/pages/Blog/BlogStyles";
 import noPhoto from "assets/no-photo.jpg";
 import { AppContext } from "context/AppContext";
+import CartPreview from "components/organisms/CartPreview/CartPreview";
 
 const CategoryPage = ({ productsError }) => {
-  const { products } = useContext(AppContext);
+  const { products, offset } = useContext(AppContext);
   let { id } = useParams();
-
+  console.log(offset)
   const blondes = products.filter((el) => el.ebc <= 16);
   const browns = products.filter((el) => el.ebc >= 16 && el.ebc < 39);
   const darks = products.filter((el) => el.ebc > 39);
@@ -35,6 +36,8 @@ const CategoryPage = ({ productsError }) => {
   const chosenCat = id ? categories.find((el) => el.id === id).beers : products;
 
   return (
+    <>
+    <CartPreview />
     <MainTemplate>
       <CategoryContainer>
         <CategoryLinksWrapper>
@@ -68,6 +71,7 @@ const CategoryPage = ({ productsError }) => {
         )}
       </CategoryContainer>
     </MainTemplate>
+    </>
   );
 };
 

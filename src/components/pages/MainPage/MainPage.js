@@ -19,13 +19,13 @@ import { AppContext } from "context/AppContext";
 import CartPreview from "components/organisms/CartPreview/CartPreview";
 
 const MainPage = ({ productsError }) => {
-  const { products, isCartPreviewOpened } = useContext(AppContext);
+  const { products } = useContext(AppContext);
 
   const bestsellers = products.filter((el, i) => i < 5);
 
   return (
     <>
-      <CartPreview isCartPreviewOpened={isCartPreviewOpened} />
+      <CartPreview />
       <MainTemplate>
         <MainPageWrapper>
           <BannerSlider>

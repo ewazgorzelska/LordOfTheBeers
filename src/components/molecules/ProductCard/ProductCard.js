@@ -15,7 +15,7 @@ import { AppContext } from "context/AppContext";
 
 const ProductCard = ({ id, name, image_url }) => {
   const dispatch = useDispatch();
-  const { handleCartPreview } = useContext(AppContext);
+  const { handleCartPreview, isCartPreviewOpened, offset } = useContext(AppContext);
 
   const productsInCart = useSelector((state) => state.productsInCart);
 
@@ -36,7 +36,7 @@ const ProductCard = ({ id, name, image_url }) => {
           })
         )
       : dispatch(updateQuantityIncrementation({ id }));
-    handleCartPreview();
+    if (!isCartPreviewOpened) handleCartPreview();
   };
 
   return (
