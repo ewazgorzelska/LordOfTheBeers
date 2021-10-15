@@ -20,7 +20,7 @@ export const AppContextProvider = ({ children }) => {
         setCategoryClicked,
         isCartPreviewOpened,
         handleCartPreview,
-        offset
+        offset,
       }}
     >
       {children}

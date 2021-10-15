@@ -18,7 +18,7 @@ export const ProductImage = styled.div`
   background-size: contain;
 `;
 export const ProductName = styled.div`
-  width: ${width*2}vw;
+  width: ${width * 2}vw;
 `;
 
 export const Price = styled.div`

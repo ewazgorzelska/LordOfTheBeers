@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
@@ -48,8 +48,8 @@ export const LeftArrowIcon = styled(BiLeftArrow)`
 `;
 
 export const RightArrowIcon = styled(BiRightArrow)`
-    align-self: center;
-    justify-self: center;
+  align-self: center;
+  justify-self: center;
 `;
 
 export const ButtonContent = styled.div`

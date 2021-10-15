@@ -15,9 +15,9 @@ import { AppContext } from "context/AppContext";
 import CartPreview from "components/organisms/CartPreview/CartPreview";
 
 const CategoryPage = ({ productsError }) => {
-  const { products, offset } = useContext(AppContext);
+  const { products } = useContext(AppContext);
   let { id } = useParams();
-  console.log(offset)
+
   const blondes = products.filter((el) => el.ebc <= 16);
   const browns = products.filter((el) => el.ebc >= 16 && el.ebc < 39);
   const darks = products.filter((el) => el.ebc > 39);
@@ -37,40 +37,42 @@ const CategoryPage = ({ productsError }) => {
 
   return (
     <>
-    <CartPreview />
-    <MainTemplate>
-      <CategoryContainer>
-        <CategoryLinksWrapper>
-          {categories.map(({ id, name }) => (
-            <Link key={id} to={`/category/${id}`}>
-              <StyledButton id={id} isBig>
-                {name}
-              </StyledButton>
-            </Link>
-          ))}
-        </CategoryLinksWrapper>
-        <Title>
-          {id ? categories.find((el) => el.id === id).name : categories[0].name}
-        </Title>
-        {products.length > 0 ? (
-          <CategoryProducts>
-            {chosenCat.map(({ id, name, image_url }) => (
-              <ProductCard
-                isBig
-                key={id}
-                id={id}
-                name={name}
-                image_url={image_url ? image_url : noPhoto}
-              />
+      <CartPreview />
+      <MainTemplate>
+        <CategoryContainer>
+          <CategoryLinksWrapper>
+            {categories.map(({ id, name }) => (
+              <Link key={id} to={`/category/${id}`}>
+                <StyledButton id={id} isBig>
+                  {name}
+                </StyledButton>
+              </Link>
             ))}
-          </CategoryProducts>
-        ) : productsError ? (
-          <Error>error</Error>
-        ) : (
-          <Loading>Loading ...</Loading>
-        )}
-      </CategoryContainer>
-    </MainTemplate>
+          </CategoryLinksWrapper>
+          <Title>
+            {id
+              ? categories.find((el) => el.id === id).name
+              : categories[0].name}
+          </Title>
+          {products.length > 0 ? (
+            <CategoryProducts>
+              {chosenCat.map(({ id, name, image_url }) => (
+                <ProductCard
+                  isBig
+                  key={id}
+                  id={id}
+                  name={name}
+                  image_url={image_url ? image_url : noPhoto}
+                />
+              ))}
+            </CategoryProducts>
+          ) : productsError ? (
+            <Error>error</Error>
+          ) : (
+            <Loading>Loading ...</Loading>
+          )}
+        </CategoryContainer>
+      </MainTemplate>
     </>
   );
 };

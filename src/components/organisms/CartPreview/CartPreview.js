@@ -13,26 +13,30 @@ import {
 } from "./CartPreviewStyles";
 
 const CartPreview = () => {
-  const { isCartPreviewOpened, handleCartPreview, offset } = useContext(AppContext);
+  const { isCartPreviewOpened, handleCartPreview, offset } =
+    useContext(AppContext);
   const productsInCart = useSelector((state) => state.productsInCart);
-  
+
   return (
-    <PreviewCartContainer isCartPreviewOpened={isCartPreviewOpened} offset={offset}>
+    <PreviewCartContainer
+      isCartPreviewOpened={isCartPreviewOpened}
+      offset={offset}
+    >
       <CartPreviewButton onClick={handleCartPreview}>
         <LeftArrowIcon />
         <ButtonContent>continue shopping</ButtonContent>
       </CartPreviewButton>
       <CartPreviewRowWrapper>
-      {productsInCart.map(({ id, image, name, price, quantityInCart }) => (
-        <CartPreviewRow
-          key={id}
-          id={id}
-          image={image}
-          name={name}
-          price={price}
-          quantityInCart={quantityInCart}
-        />
-      ))}
+        {productsInCart.map(({ id, image, name, price, quantityInCart }) => (
+          <CartPreviewRow
+            key={id}
+            id={id}
+            image={image}
+            name={name}
+            price={price}
+            quantityInCart={quantityInCart}
+          />
+        ))}
       </CartPreviewRowWrapper>
       <StyledCartPreviewButton to={`/cart`} onClick={handleCartPreview}>
         <ButtonContent>checkout</ButtonContent>

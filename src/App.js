@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import MainPage from "components/pages/MainPage/MainPage";
 import CategoryPage from "components/pages/CategoryPage/CategoryPage";
+import ProductPage from "components/pages/ProductPage/ProductPage";
 import { AppContext } from "context/AppContext";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
@@ -47,6 +48,7 @@ function App() {
     <AppProviders>
       <CategoryPage productsError={productsError} />
       <MainPage productsError={productsError} />
+      <ProductPage />
     </AppProviders>
   );
 }
