@@ -10,6 +10,7 @@ const buttons = css`
   background-color: #121212;
   font-weight: 800;
   display: grid;
+  cursor: pointer;
 `;
 
 export const PreviewCartContainer = styled.div`

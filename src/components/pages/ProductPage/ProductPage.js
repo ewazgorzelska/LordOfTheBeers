@@ -17,25 +17,22 @@ import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductQuantity from "components/molecules/ProductQuantity/ProductQuantity";
 import { addToCart, updateQuantityIncrementation } from "store/index.js";
 import CartPreview from "components/organisms/CartPreview/CartPreview";
+import { useGetProductsQuery } from "store/index.js";
 
 const ProductPage = () => {
-  const { handleCartPreview, isCartPreviewOpened, products } =
-    useContext(AppContext);
   let { id } = useParams();
+  const { data } = useGetProductsQuery();
+  const { handleCartPreview, isCartPreviewOpened } = useContext(AppContext);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
 
-  console.log(products);
-
-  const productName = products.find((el) => el.id.toString() === id).name;
-  const productImage = products.find((el) => el.id.toString() === id).image_url;
-  const productTagline = products.find((el) => el.id.toString() === id).tagline;
-  const productDescription = products.find(
+  const productName = data.find((el) => el.id.toString() === id).name;
+  const productImage = data.find((el) => el.id.toString() === id).image_url;
+  const productTagline = data.find((el) => el.id.toString() === id).tagline;
+  const productDescription = data.find(
     (el) => el.id.toString() === id
   ).description;
-  const foodPairing = products.find(
-    (el) => el.id.toString() === id
-  ).food_pairing;
+  const foodPairing = data.find((el) => el.id.toString() === id).food_pairing;
 
   const handlePassQuantity = (quantity) => {
     setQuantity(quantity);

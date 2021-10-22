@@ -1,14 +1,22 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const initialCartState = [
-  {
-    id: 12,
-    image: "https://images.punkapi.com/v2/keg.png",
-    name: "BuzzEEEEERRRR",
-    price: 1.0,
-    quantityInCart: 1,
-  },
-];
+const initialCartState = [];
+
+const productsApi = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://api.punkapi.com/v2/",
+  }),
+  tagTypes: ["Products"],
+  endpoints: (builder) => ({
+    getProducts: builder.query({
+      query: () => "beers?page=3&per_page=80",
+      providesTags: ["Products"],
+    }),
+  }),
+});
+
+export const { useGetProductsQuery } = productsApi;
 
 export const productsInCartSlice = createSlice({
   name: "productsInCart",
@@ -53,7 +61,9 @@ export const {
 
 export const store = configureStore({
   reducer: {
+    [productsApi.reducerPath]: productsApi.reducer,
     productsInCart: productsInCartSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productsApi.middleware),
 });
-

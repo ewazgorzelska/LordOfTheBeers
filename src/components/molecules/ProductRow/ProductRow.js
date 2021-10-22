@@ -15,7 +15,7 @@ import {
 
 const ProductRow = ({ id, image, name, unitPrice, quantityInCart }) => {
   const dispatch = useDispatch();
-  
+
   const handleRemoveFromCart = () => {
     dispatch(removeFromCart({ id: id }));
   };

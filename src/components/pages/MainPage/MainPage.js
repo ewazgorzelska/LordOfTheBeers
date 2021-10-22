@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import BannerSlider from "components/molecules/Sliders/BannerSlider";
 import ProductSlider from "components/molecules/Sliders/ProductSlider/ProductSlider";
 import InfoSection from "components/molecules/InfoSection/InfoSection";
@@ -15,13 +15,11 @@ import {
 import ProductCard from "components/molecules/ProductCard/ProductCard";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import { infoSectionData } from "data/data";
-import { AppContext } from "context/AppContext";
 import CartPreview from "components/organisms/CartPreview/CartPreview";
+import { useGetProductsQuery } from "store/index.js";
 
-const MainPage = ({ productsError }) => {
-  const { products } = useContext(AppContext);
-
-  const bestsellers = products.filter((el, i) => i < 5);
+const MainPage = () => {
+  const { data, isLoading } = useGetProductsQuery();
 
   return (
     <>
@@ -34,12 +32,12 @@ const MainPage = ({ productsError }) => {
             <Slide3 />
           </BannerSlider>
           <InfoSection>
-            {infoSectionData.map((item) => (
+            {infoSectionData.map(({ id, title, icon, content }) => (
               <InfoSectionItem
-                key={item.id}
-                title={item.title}
-                icon={item.icon}
-                content={item.content}
+                key={id}
+                title={title}
+                icon={icon}
+                content={content}
               />
             ))}
           </InfoSection>
@@ -48,16 +46,20 @@ const MainPage = ({ productsError }) => {
             <WidgetTitle>Bestsellers</WidgetTitle>
           </WidgetTitleWrapper>
           <ProductSlider>
-            {productsError
-              ? productsError
-              : bestsellers.map((el) => (
+            {isLoading ? (
+              <h2>Loading...</h2>
+            ) : (
+              data
+                .slice(0, 5)
+                .map(({ id, name, image_url }) => (
                   <ProductCard
-                    key={el.id}
-                    id={el.id}
-                    name={el.name}
-                    image_url={el.image_url}
+                    key={id}
+                    id={id}
+                    name={name}
+                    image_url={image_url}
                   />
-                ))}
+                ))
+            )}
           </ProductSlider>
         </MainPageWrapper>
       </MainTemplate>
