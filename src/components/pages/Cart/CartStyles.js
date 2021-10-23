@@ -9,6 +9,12 @@ export const CartContainer = styled.div`
   margin: 0 auto 0 auto;
 `;
 
+export const ProductsInCartWrapper = styled.div`
+  height: 80vh;
+  overflow-y: ${({ productsInCart }) =>
+    productsInCart.length > 0 ? "scroll" : "unset"};
+`;
+
 export const EmptyCartInfo = styled.p`
   margin: 3em 0 3em 0;
 `;

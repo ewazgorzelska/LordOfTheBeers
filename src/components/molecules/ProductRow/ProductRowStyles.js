@@ -16,8 +16,11 @@ export const ProductImage = styled.div`
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: contain;
+  cursor: pointer;
 `;
-export const ProductName = styled.div``;
+export const ProductName = styled.div`
+  cursor: pointer;
+`;
 
 export const Price = styled.div``;
 

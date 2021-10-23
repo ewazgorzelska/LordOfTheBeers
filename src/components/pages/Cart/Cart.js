@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
 import { Title } from "components/pages/CategoryPage/CategoryPageStyles";
 import ProductRow from "components/molecules/ProductRow/ProductRow";
-import { CartContainer, EmptyCartInfo } from "./CartStyles";
+import {
+  CartContainer,
+  ProductsInCartWrapper,
+  EmptyCartInfo,
+} from "./CartStyles";
 
 const Cart = () => {
   const productsInCart = useSelector((state) => state.productsInCart);
@@ -12,7 +16,7 @@ const Cart = () => {
     <MainTemplate>
       <CartContainer>
         <Title>Your Cart</Title>
-        <div>
+        <ProductsInCartWrapper productsInCart={productsInCart}>
           {productsInCart.length ? (
             productsInCart.map(({ id, image, name, price, quantityInCart }) => (
               <ProductRow
@@ -27,7 +31,7 @@ const Cart = () => {
           ) : (
             <EmptyCartInfo>No products in your cart yet</EmptyCartInfo>
           )}
-        </div>
+        </ProductsInCartWrapper>
       </CartContainer>
     </MainTemplate>
   );
