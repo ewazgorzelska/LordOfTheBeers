@@ -20,7 +20,7 @@ import { useGetProductsQuery } from "store/index.js";
 
 const MainPage = () => {
   const { data, isLoading } = useGetProductsQuery();
-
+  console.log(data);
   return (
     <>
       <CartPreview />
@@ -54,7 +54,7 @@ const MainPage = () => {
                 .map(({ id, name, image_url }) => (
                   <ProductCard
                     key={id}
-                    id={id}
+                    id={id.toString()}
                     name={name}
                     image_url={image_url}
                   />

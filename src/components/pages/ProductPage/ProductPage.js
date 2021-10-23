@@ -41,7 +41,7 @@ const ProductPage = () => {
   const productsInCart = useSelector((state) => state.productsInCart);
 
   const isProductInCart = (id) => {
-    return productsInCart.filter((el) => el.id === id);
+    return productsInCart.filter((el) => el.id.toString() === id);
   };
 
   const handleAddProductToCart = () => {
@@ -51,7 +51,7 @@ const ProductPage = () => {
             id,
             image: productImage,
             name: productName,
-            price: 2.0,
+            price: 1.0,
             quantityInCart: quantity + 1,
           })
         )

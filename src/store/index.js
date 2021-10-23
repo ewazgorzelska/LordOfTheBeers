@@ -38,6 +38,7 @@ export const productsInCartSlice = createSlice({
           : el
       );
     },
+
     updateQuantityDecrementation(state, action) {
       return state.map((el) =>
         el.id === action.payload.id
