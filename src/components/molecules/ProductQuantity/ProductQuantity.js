@@ -7,6 +7,7 @@ import {
 import {
   updateQuantityIncrementation,
   updateQuantityDecrementation,
+  updateTotalPrice,
 } from "store/index.js";
 
 function quantityReducer(state, action) {
@@ -23,14 +24,16 @@ function quantityReducer(state, action) {
 const ProductQuantity = ({ handlePassQuantity, quantityInCart, id }) => {
   const [quantity, dispatch] = useReducer(quantityReducer, 0);
   const dispatch_redux = useDispatch();
+  const dispatch2 = useDispatch();
   const productsInCart = useSelector((state) => state.productsInCart);
 
   const isProductInCart = (id) => {
     return productsInCart.filter((el) => el.id.toString() === id);
   };
 
-  const handleClick = (action, upDate) => {
+  const handleClick = (action, upDate, value) => {
     dispatch({ type: action });
+    dispatch2(updateTotalPrice(value));
     isProductInCart(id).length > 0
       ? dispatch_redux(upDate)
       : handlePassQuantity(quantity);
@@ -42,7 +45,7 @@ const ProductQuantity = ({ handlePassQuantity, quantityInCart, id }) => {
         id={id}
         aria-label="decrementation"
         onClick={() =>
-          handleClick("decrement", updateQuantityDecrementation({ id }))
+          handleClick("decrement", updateQuantityDecrementation({ id }), -1)
         }
       >
         -
@@ -57,7 +60,7 @@ const ProductQuantity = ({ handlePassQuantity, quantityInCart, id }) => {
       <StyledButton
         id={id}
         onClick={() =>
-          handleClick("increment", updateQuantityIncrementation({ id }))
+          handleClick("increment", updateQuantityIncrementation({ id }), 1)
         }
       >
         +

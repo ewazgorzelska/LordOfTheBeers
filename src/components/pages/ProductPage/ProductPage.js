@@ -14,7 +14,11 @@ import {
   ButtonWrapper,
 } from "./ProductPageStyles";
 import MainTemplate from "templates/MainTemplate/MainTemplate";
-import { addToCart, updateQuantityIncrementation } from "store/index.js";
+import {
+  addToCart,
+  updateQuantityIncrementation,
+  updateTotalPrice,
+} from "store/index.js";
 import CartPreview from "components/organisms/CartPreview/CartPreview";
 import { useGetProductsQuery } from "store/index.js";
 
@@ -23,7 +27,7 @@ const ProductPage = () => {
   const { data } = useGetProductsQuery();
   const { handleCartPreview, isCartPreviewOpened } = useContext(AppContext);
   const dispatch = useDispatch();
-
+  const dispatch2 = useDispatch();
   const productName = data.find((el) => el.id.toString() === id).name;
   const productImage = data.find((el) => el.id.toString() === id).image_url;
   const productTagline = data.find((el) => el.id.toString() === id).tagline;
@@ -45,12 +49,13 @@ const ProductPage = () => {
             id,
             image: productImage,
             name: productName,
-            price: 1.0,
+            price: 1,
             quantityInCart: 1,
           })
         )
       : dispatch(updateQuantityIncrementation({ id }));
 
+    dispatch2(updateTotalPrice(1));
     if (!isCartPreviewOpened) handleCartPreview();
   };
 

@@ -10,11 +10,16 @@ import {
   ButtonWrapper,
 } from "./ProductCardStyles";
 import { Link } from "react-router-dom";
-import { addToCart, updateQuantityIncrementation } from "store/index.js";
+import {
+  addToCart,
+  updateQuantityIncrementation,
+  updateTotalPrice,
+} from "store/index.js";
 import { AppContext } from "context/AppContext";
 
 const ProductCard = ({ id, name, image_url }) => {
   const dispatch = useDispatch();
+  const dispatch2 = useDispatch();
   const { handleCartPreview, isCartPreviewOpened } = useContext(AppContext);
 
   const productsInCart = useSelector((state) => state.productsInCart);
@@ -31,11 +36,12 @@ const ProductCard = ({ id, name, image_url }) => {
             id,
             image: image_url,
             name,
-            price: 1.0,
+            price: 1,
             quantityInCart: 1,
           })
         )
       : dispatch(updateQuantityIncrementation({ id }));
+    dispatch2(updateTotalPrice(1));
     if (!isCartPreviewOpened) handleCartPreview();
   };
 

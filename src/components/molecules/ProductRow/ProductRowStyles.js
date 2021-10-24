@@ -22,7 +22,9 @@ export const ProductName = styled.div`
   cursor: pointer;
 `;
 
-export const Price = styled.div``;
+export const Price = styled.div`
+  /* font-weight: 800; */
+`;
 
 export const RemoveButton = styled.button`
   width: 2vw;

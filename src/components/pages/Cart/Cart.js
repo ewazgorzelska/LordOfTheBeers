@@ -7,10 +7,13 @@ import {
   CartContainer,
   ProductsInCartWrapper,
   EmptyCartInfo,
+  TotalPriceWrapper,
+  TotalPriceTitle,
 } from "./CartStyles";
 
 const Cart = () => {
   const productsInCart = useSelector((state) => state.productsInCart);
+  const total = useSelector((state) => state.totalPrice.value);
 
   return (
     <MainTemplate>
@@ -31,6 +34,10 @@ const Cart = () => {
           ) : (
             <EmptyCartInfo>No products in your cart yet</EmptyCartInfo>
           )}
+          <TotalPriceWrapper>
+            <TotalPriceTitle>Total:</TotalPriceTitle>
+            <h2>{total} $</h2>
+          </TotalPriceWrapper>
         </ProductsInCartWrapper>
       </CartContainer>
     </MainTemplate>

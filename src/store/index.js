@@ -53,6 +53,16 @@ export const productsInCartSlice = createSlice({
   },
 });
 
+export const totalPriceSlice = createSlice({
+  name: "totalPrice",
+  initialState: { value: 0 },
+  reducers: {
+    updateTotalPrice(state, action) {
+      state.value += action.payload;
+    },
+  },
+});
+
 export const {
   addToCart,
   removeFromCart,
@@ -60,10 +70,13 @@ export const {
   updateQuantityDecrementation,
 } = productsInCartSlice.actions;
 
+export const { updateTotalPrice } = totalPriceSlice.actions;
+
 export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
     productsInCart: productsInCartSlice.reducer,
+    totalPrice: totalPriceSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productsApi.middleware),
