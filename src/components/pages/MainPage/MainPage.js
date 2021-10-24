@@ -20,7 +20,7 @@ import { useGetProductsQuery } from "store/index.js";
 
 const MainPage = () => {
   const { data, isLoading } = useGetProductsQuery();
-  console.log(data);
+
   return (
     <>
       <CartPreview />

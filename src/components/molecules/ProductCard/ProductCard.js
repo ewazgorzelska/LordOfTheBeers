@@ -20,7 +20,7 @@ const ProductCard = ({ id, name, image_url }) => {
   const productsInCart = useSelector((state) => state.productsInCart);
 
   const isProductInCart = (id) => {
-    return productsInCart.filter((el) => el.id === id);
+    return productsInCart.filter((el) => el.id.toString() === id);
   };
 
   const handleAddToCart = (e) => {

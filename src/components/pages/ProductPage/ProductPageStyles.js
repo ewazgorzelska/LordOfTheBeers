@@ -46,11 +46,13 @@ export const ProductPrice = styled.span`
 
 export const StyledButton = styled(Button)`
   height: 10vh;
-  width: 12vw;
+  width: 20vw;
   font-size: 1em;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
   margin: 0;
+  background-color: ${({ second }) => (second ? "#ffa500" : "green")};
+  cursor: ${({ second }) => (second ? "unset" : "pointer")};
 `;
 
 export const ButtonWrapper = styled.div`

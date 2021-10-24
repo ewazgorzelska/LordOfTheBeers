@@ -26,7 +26,7 @@ const ProductQuantity = ({ handlePassQuantity, quantityInCart, id }) => {
   const productsInCart = useSelector((state) => state.productsInCart);
 
   const isProductInCart = (id) => {
-    return productsInCart.filter((el) => el.id === id);
+    return productsInCart.filter((el) => el.id.toString() === id);
   };
 
   const handleClick = (action, upDate) => {
@@ -48,6 +48,7 @@ const ProductQuantity = ({ handlePassQuantity, quantityInCart, id }) => {
         -
       </StyledButton>
       <input
+        id={id}
         type="text"
         aria-label="quantity"
         value={quantityInCart ? quantityInCart : quantity}
