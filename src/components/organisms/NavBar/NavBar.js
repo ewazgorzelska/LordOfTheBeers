@@ -23,7 +23,7 @@ const NavBar = () => {
           <ButtonIcon as={NavLink} to="/fav">
             <TiHeartOutline />
           </ButtonIcon>
-          <ButtonIcon as={NavLink} to="/user">
+          <ButtonIcon as={NavLink} to="/login">
             <TiUserOutline />
           </ButtonIcon>
           <ButtonIcon as={NavLink} to="/cart">

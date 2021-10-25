@@ -13,7 +13,6 @@ import {
   WidgetTitle,
 } from "./MainPageStyles.js";
 import ProductCard from "components/molecules/ProductCard/ProductCard";
-import MainTemplate from "templates/MainTemplate/MainTemplate";
 import { infoSectionData } from "data/data";
 import CartPreview from "components/organisms/CartPreview/CartPreview";
 import { useGetProductsQuery } from "store/index.js";
@@ -24,45 +23,43 @@ const MainPage = () => {
   return (
     <>
       <CartPreview />
-      <MainTemplate>
-        <MainPageWrapper>
-          <BannerSlider>
-            <Slide1 />
-            <Slide2 />
-            <Slide3 />
-          </BannerSlider>
-          <InfoSection>
-            {infoSectionData.map(({ id, title, icon, content }) => (
-              <InfoSectionItem
-                key={id}
-                title={title}
-                icon={icon}
-                content={content}
-              />
-            ))}
-          </InfoSection>
-          <MiddleImage />
-          <WidgetTitleWrapper>
-            <WidgetTitle>Bestsellers</WidgetTitle>
-          </WidgetTitleWrapper>
-          <ProductSlider>
-            {isLoading ? (
-              <h2>Loading...</h2>
-            ) : (
-              data
-                .slice(0, 5)
-                .map(({ id, name, image_url }) => (
-                  <ProductCard
-                    key={id}
-                    id={id.toString()}
-                    name={name}
-                    image_url={image_url}
-                  />
-                ))
-            )}
-          </ProductSlider>
-        </MainPageWrapper>
-      </MainTemplate>
+      <MainPageWrapper>
+        <BannerSlider>
+          <Slide1 />
+          <Slide2 />
+          <Slide3 />
+        </BannerSlider>
+        <InfoSection>
+          {infoSectionData.map(({ id, title, icon, content }) => (
+            <InfoSectionItem
+              key={id}
+              title={title}
+              icon={icon}
+              content={content}
+            />
+          ))}
+        </InfoSection>
+        <MiddleImage />
+        <WidgetTitleWrapper>
+          <WidgetTitle>Bestsellers</WidgetTitle>
+        </WidgetTitleWrapper>
+        <ProductSlider>
+          {isLoading ? (
+            <h2>Loading...</h2>
+          ) : (
+            data
+              .slice(0, 5)
+              .map(({ id, name, image_url }) => (
+                <ProductCard
+                  key={id}
+                  id={id.toString()}
+                  name={name}
+                  image_url={image_url}
+                />
+              ))
+          )}
+        </ProductSlider>
+      </MainPageWrapper>
     </>
   );
 };

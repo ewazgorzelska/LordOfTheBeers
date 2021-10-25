@@ -7,20 +7,25 @@ import ProductPage from "components/pages/ProductPage/ProductPage";
 import Cart from "components/pages/Cart/Cart";
 import { store } from "store";
 import { Provider } from "react-redux";
+import MainTemplate from "templates/MainTemplate/MainTemplate";
+import Login from "components/pages/Login/Login";
 
 const AppProviders = ({ children }) => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/article/:id" component={Article} />
-          <Route path="/category/:id" component={CategoryPage} />
-          <Route path="/product/:id" component={ProductPage} />
-          <Route path="/cart" component={Cart} />
-          {children}
-        </Switch>
+        <MainTemplate>
+          <Switch>
+            <Route exact path="/" component={MainPage} />
+            <Route path="/blog" component={Blog} />
+            <Route path="/article/:id" component={Article} />
+            <Route path="/category/:id" component={CategoryPage} />
+            <Route path="/product/:id" component={ProductPage} />
+            <Route path="/cart" component={Cart} />
+            <Route path="/login" component={Login} />
+            {children}
+          </Switch>
+        </MainTemplate>
       </BrowserRouter>
     </Provider>
   );

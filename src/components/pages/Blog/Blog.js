@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AppContext } from "context/AppContext";
-import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ArticleCard from "components/molecules/ArticleCard/ArticleCard";
 import { ArticlesList, Loading, Error } from "./BlogStyles";
 
@@ -44,7 +43,7 @@ const Blog = () => {
   }, [setArticles]);
 
   return (
-    <MainTemplate>
+    <>
       {articles.length > 0 ? (
         <ArticlesList>
           {articles.map(({ id, title, image = null, content }) => (
@@ -62,7 +61,7 @@ const Blog = () => {
       ) : (
         <Loading>Loading ...</Loading>
       )}
-    </MainTemplate>
+    </>
   );
 };
 

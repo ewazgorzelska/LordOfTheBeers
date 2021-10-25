@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import MainTemplate from "templates/MainTemplate/MainTemplate";
 import ProductCard from "components/molecules/ProductCard/ProductCard";
 import {
   CategoryContainer,
@@ -39,41 +38,37 @@ const CategoryPage = () => {
   return (
     <>
       <CartPreview />
-      <MainTemplate>
-        <CategoryContainer>
-          <CategoryLinksWrapper>
-            {categories.map(({ id, name }) => (
-              <Link key={id} to={`/category/${id}`}>
-                <StyledButton id={id} isBig>
-                  {name}
-                </StyledButton>
-              </Link>
+      <CategoryContainer>
+        <CategoryLinksWrapper>
+          {categories.map(({ id, name }) => (
+            <Link key={id} to={`/category/${id}`}>
+              <StyledButton id={id} isBig>
+                {name}
+              </StyledButton>
+            </Link>
+          ))}
+        </CategoryLinksWrapper>
+        <Title>
+          {id ? categories.find((el) => el.id === id).name : categories[0].name}
+        </Title>
+        {data.length > 0 ? (
+          <CategoryProducts>
+            {chosenCat.map(({ id, name, image_url }) => (
+              <ProductCard
+                isBig
+                key={id}
+                id={id}
+                name={name}
+                image_url={image_url ? image_url : noPhoto}
+              />
             ))}
-          </CategoryLinksWrapper>
-          <Title>
-            {id
-              ? categories.find((el) => el.id === id).name
-              : categories[0].name}
-          </Title>
-          {data.length > 0 ? (
-            <CategoryProducts>
-              {chosenCat.map(({ id, name, image_url }) => (
-                <ProductCard
-                  isBig
-                  key={id}
-                  id={id}
-                  name={name}
-                  image_url={image_url ? image_url : noPhoto}
-                />
-              ))}
-            </CategoryProducts>
-          ) : isError ? (
-            <Error>error</Error>
-          ) : (
-            <Loading>Loading ...</Loading>
-          )}
-        </CategoryContainer>
-      </MainTemplate>
+          </CategoryProducts>
+        ) : isError ? (
+          <Error>error</Error>
+        ) : (
+          <Loading>Loading ...</Loading>
+        )}
+      </CategoryContainer>
     </>
   );
 };

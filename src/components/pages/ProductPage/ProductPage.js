@@ -13,7 +13,6 @@ import {
   StyledButton,
   ButtonWrapper,
 } from "./ProductPageStyles";
-import MainTemplate from "templates/MainTemplate/MainTemplate";
 import {
   addToCart,
   updateQuantityIncrementation,
@@ -62,35 +61,33 @@ const ProductPage = () => {
   return (
     <>
       <CartPreview />
-      <MainTemplate>
-        <ProductContainer>
-          {productImage ? <Image src={productImage} alt="beer" /> : null}
-          <ProductNameWrapper>
-            <Title>{productName}</Title>
-            <h2>{productTagline}</h2>
-            <ProductPrice>$1.00</ProductPrice>
-            <ButtonWrapper>
-              {isProductInCart(id).length === 0 ? (
-                <StyledButton onClick={handleAddProductToCart}>
-                  Add to cart
-                </StyledButton>
-              ) : (
-                <StyledButton second>It's already in your cart</StyledButton>
-              )}
-            </ButtonWrapper>
-          </ProductNameWrapper>
-          <ProductDescription>
-            <Title>Description</Title>
-            <p>{productDescription}</p>
-            <Title>Food Pairing</Title>
-            <ul>
-              {foodPairing.map((el) => (
-                <Food key={el}>{el}</Food>
-              ))}
-            </ul>
-          </ProductDescription>
-        </ProductContainer>
-      </MainTemplate>
+      <ProductContainer>
+        {productImage ? <Image src={productImage} alt="beer" /> : null}
+        <ProductNameWrapper>
+          <Title>{productName}</Title>
+          <h2>{productTagline}</h2>
+          <ProductPrice>$1.00</ProductPrice>
+          <ButtonWrapper>
+            {isProductInCart(id).length === 0 ? (
+              <StyledButton onClick={handleAddProductToCart}>
+                Add to cart
+              </StyledButton>
+            ) : (
+              <StyledButton second>It's already in your cart</StyledButton>
+            )}
+          </ButtonWrapper>
+        </ProductNameWrapper>
+        <ProductDescription>
+          <Title>Description</Title>
+          <p>{productDescription}</p>
+          <Title>Food Pairing</Title>
+          <ul>
+            {foodPairing.map((el) => (
+              <Food key={el}>{el}</Food>
+            ))}
+          </ul>
+        </ProductDescription>
+      </ProductContainer>
     </>
   );
 };
