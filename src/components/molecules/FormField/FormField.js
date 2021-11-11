@@ -11,19 +11,27 @@ const Wrapper = styled.div`
   margin-bottom: 2em;
 `;
 
-const FormField = ({ label, name, type, value, onChange }) => {
+const FormField = ({ label, htmlFor, name, type, value, id, onChange }) => {
   return (
     <Wrapper>
-      <Label>{label}</Label>
-      <Input name={name} type={type} value={value} onChange={onChange} />
+      <Label htmlFor={htmlFor}>{label}</Label>
+      <Input
+        name={name}
+        type={type}
+        value={value}
+        id={id}
+        onChange={onChange}
+      />
     </Wrapper>
   );
 };
 
 FormField.propTypes = {
   label: PropTypes.string.isRequired,
+  htmlFor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
+  id: PropTypes.string.isRequired,
 };
 
 export default FormField;

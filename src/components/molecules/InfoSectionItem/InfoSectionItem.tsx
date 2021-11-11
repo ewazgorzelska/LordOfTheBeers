@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const InfoSectionItemWrapper = styled.div`
@@ -22,7 +22,13 @@ const InfoSectionItemContent = styled.p`
   text-justify: inter-word;
 `;
 
-const InfoSectionItem = ({ title, icon, content }) => {
+interface InfoSectionItemProps {
+  title: string,
+  icon: JSX.Element,
+  content: string
+}
+
+const InfoSectionItem: FunctionComponent<InfoSectionItemProps> = ({ title, icon, content }) => {
   return (
     <InfoSectionItemWrapper>
       <InfoSectionItemTitle>
